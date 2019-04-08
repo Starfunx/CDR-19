@@ -3,8 +3,7 @@
 import numpy as np
 
 import Simulation_Parameters as params
-import Camera_Parameters as camera
-
+#import Camera_Parameters as camera
 
 def rotationMatrix(Matrix4):
     RotationMatrix = Matrix4
@@ -12,7 +11,6 @@ def rotationMatrix(Matrix4):
     RotationMatrix[1][3] = 0
     RotationMatrix[2][3] = 0
     return RotationMatrix
-
 
 def terrain2RobotMatrix(params):
     TraTerrain2Robot = np.array(
@@ -58,24 +56,6 @@ def world2Camera(params, A):
     R =  np.dot(H,A)
     return np.stack((R[0]/R[3], R[1]/R[3], R[2]/R[3]))
 
-def CameraProject(params, D):
-    ones = np.array([np.ones_like(D[0])])
-    D = np.concatenate((D, ones), axis=0)
-
-    P = np.array(
-        [[1, 0,    0, 0],
-         [0, 1,    0, 0],
-         [0, 0, 1/camera.cz, 0]])
-    F = np.dot(P,D)
-
-    A = np.array(
-        [[camera.kx,         0, camera.cx],
-         [        0, camera.ky, camera.cy],
-         [        0,         0,         1]])
-    B = np.dot(A,F)
-
-    return np.stack((B[0]/B[2], B[1]/B[2]))
-
 def LinePlaneIntersection(plane, line):
     PlanePoint = plane[0]
     PlaneOrthVect = plane[1]
@@ -98,7 +78,14 @@ def LinePlaneIntersection(plane, line):
 
     return intersectionPoint
 
-def CameraInverseProject(params, B):
+def CameraProject(camera, D):
+    cameraMatrix = camera.ProjectionMatrix()
+    ones = np.array([np.ones_like(D[0])])
+    D = np.concatenate((D, ones), axis=0)
+    B = np.dot(cameraMatrix, D)
+    return np.stack((B[0]/B[2], B[1]/B[2]))
+
+def CameraInverseProject(camera, B):
     A = np.array(
         [[camera.kx,         0, camera.cx],
          [        0, camera.ky, camera.cy],
@@ -135,16 +122,12 @@ def CameraInverseProject(params, B):
                      pointRterrain[1]/pointRterrain[3],
                      pointRterrain[2]/pointRterrain[3]))
 
-def getMask(object, cameraProile, mode):
-    xres =
-    yres = 
-    Mask = np.zeros(xres,yres)
-    return Mask
+def getMask(object, cameraProile, CameraMode):
+    pass
+
 
 
 # to add:
-#Documentation of all functions
-# ## optionel : picamera profiles
-#               https://picamera.readthedocs.io/en/release-1.12/fov.html
+#Documentation for all functions
 #
 # -- mask get the mask of the usefull zone (big red circle)

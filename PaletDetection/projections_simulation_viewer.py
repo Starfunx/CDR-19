@@ -3,7 +3,13 @@ import numpy as np
 import SpaceGeometry as SG
 import spacial_objects as obj
 
+import Camera_Parameters as Camera
 import Simulation_Parameters as params
+
+
+camera = Camera.camera()
+camera.setCameraProfile(4)
+
 
 #Objetcts
 #circle
@@ -21,32 +27,32 @@ L2 = obj.Line([0, 950+200, 0], [3000,950+200,0], 200)
 #projection in the camera coordinate system
 D1 = SG.world2Camera(params, Circle)
 #image projection
-Y1 = SG.CameraProject(params, D1)
+Y1 = SG.CameraProject(camera, D1)
 
 D2 = SG.world2Camera(params, greenCyl)
-Y2 = SG.CameraProject(params, D2)
+Y2 = SG.CameraProject(camera, D2)
 
 D3 = SG.world2Camera(params, blueCyl)
-Y3 = SG.CameraProject(params, D3)
+Y3 = SG.CameraProject(camera, D3)
 
 D4 = SG.world2Camera(params, Circle0)
-Y4 = SG.CameraProject(params, D4)
+Y4 = SG.CameraProject(camera, D4)
 
 D5 = SG.world2Camera(params, L)
-Y5 = SG.CameraProject(params, D5)
+Y5 = SG.CameraProject(camera, D5)
 
 D6 = SG.world2Camera(params, L2)
-Y6 = SG.CameraProject(params, D6)
+Y6 = SG.CameraProject(camera, D6)
 
 D7 = SG.world2Camera(params, Circle0Center)
-Y7 = SG.CameraProject(params, D7)
+Y7 = SG.CameraProject(camera, D7)
 
 D8 = SG.world2Camera(params, Circle2)
 #image projection
-Y8 = SG.CameraProject(params, D8)
+Y8 = SG.CameraProject(camera, D8)
 
 # projection on the plane Z=25
-pointRTerrain = SG.CameraInverseProject(params, Y7)
+pointRTerrain = SG.CameraInverseProject(camera, Y7)
 print("pointRTerrain: " + str(pointRTerrain))
 
 # print(np.linalg.inv(world2CameraMatrix(params)))
@@ -73,7 +79,7 @@ plot.plot(Circle0Center[0], Circle0Center[1], 'yo')
 
 plot = plt.subplot(222)
 plt.axis('equal')
-plot.axis([0, 3280, 0, 2464], ' on equal scaled square')
+plot.axis([0, camera.npx, 0, camera.npy], ' on equal scaled square')
 
 plot.plot(Y4[0], Y4[1], 'k.')
 plot.plot(Y1[0], Y1[1], 'r.')
