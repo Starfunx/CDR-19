@@ -11,9 +11,9 @@ CameraPosition = np.array(
 alphaCam =  np.pi* 1/8
 
 #robot position and orientation (Relative to terrain)
-thetaZrob = -np.pi/2
+thetaZrob = -np.pi/4
 robotPosition = np.array(
-    [100,950,0]   ,float)
+    [100,100,0]   ,float)
 
 # Camera absolute position
 CamAbsPos = robotPosition + np.array(

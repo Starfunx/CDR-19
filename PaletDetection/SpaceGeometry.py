@@ -10,6 +10,9 @@ def rotationMatrix(Matrix4):
     RotationMatrix[0][3] = 0
     RotationMatrix[1][3] = 0
     RotationMatrix[2][3] = 0
+    RotationMatrix[3][0] = 0
+    RotationMatrix[3][1] = 0
+    RotationMatrix[3][2] = 0
     return RotationMatrix
 
 def terrain2RobotMatrix(params):
@@ -87,8 +90,8 @@ def CameraProject(camera, D):
 
 def CameraInverseProject(camera, B):
     A = np.array(
-        [[camera.kx,         0, camera.cx],
-         [        0, camera.ky, camera.cy],
+        [[camera.kx/camera.binningRatio,         0, camera.cx],
+         [        0, camera.ky/camera.binningRatio, camera.cy],
          [        0,         0,         1]])
     Ap = np.linalg.inv(A)
 
