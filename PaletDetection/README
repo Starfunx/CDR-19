@@ -1,0 +1,13 @@
+librairies python nécessaire:
+
+-numpy
+-openCV
+-matplotlib # uniquement pour le débug( la visualisation des résultats)
+
+pour simuler une projection de points dans l'espace sur la PicamV2 ou,
+la projection inverse sur le plan z=25:
+Choisir les paramètres dans Simulation_Parameters.py, puis executer le fichier
+projection_simulation_viewer.py avec python
+
+Pour detecter les atomes( elipses colorées):
+executer cylDetector.py
