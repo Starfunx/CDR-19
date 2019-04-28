@@ -30,18 +30,14 @@ output_img = img
 
 Time = time.time() - start
 
+
 RCenters, GCenters, BCenters = blobDetector.findAtoms(img, colorRanges)
+
 
 #plots
 print("Red :\n"   + str(RCenters))
 print("Green :\n" + str(GCenters))
 print("Blue :\n"  + str(BCenters))
-
-RCenters = RCenters.transpose()
-GCenters = GCenters.transpose()
-BCenters = BCenters.transpose()
-# print(RCenters.shape[1])
-
 for i in range(RCenters.shape[0]):
     cv2.putText(img, "Red", (RCenters[i][0]-15, RCenters[i][1]-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5,  (30, 30, 30), thickness = 1, lineType=cv2.LINE_AA)
 for i in range(GCenters.shape[0]):
@@ -49,11 +45,9 @@ for i in range(GCenters.shape[0]):
 for i in range(BCenters.shape[0]):
     cv2.putText(img, "Blue", (BCenters[i][0]-15, BCenters[i][1]-15), cv2.FONT_HERSHEY_SIMPLEX, 0.5,  (30, 30, 30), thickness = 1, lineType=cv2.LINE_AA)
 
-
 RCenters = RCenters.transpose()
 GCenters = GCenters.transpose()
 BCenters = BCenters.transpose()
-
 
 img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 

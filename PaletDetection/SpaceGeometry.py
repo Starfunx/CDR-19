@@ -70,10 +70,6 @@ def LinePlaneIntersection(plane, line):
     b = np.sum(PlaneOrthVect * (PlanePoint - LinePoint), axis = 0)
     t = np.linalg.solve(np.array([[a]]), np.array([b]))
 
-    print("a : " + str(a))
-    print("b : " + str(b))
-    print("t : " + str(t))
-
     intersectionPoint = np.transpose(np.array([
          LinePoint[0] + t*LineVect[0],
          LinePoint[1] + t*LineVect[1],

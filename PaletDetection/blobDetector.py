@@ -37,7 +37,7 @@ def findCenters(threshold, minArea):
             else:
                  cX, cY = 0, 0
             Centers = np.append(Centers, [[cX],[cY]], axis = 1)
-    return Centers[:,1:]
+    return Centers[:,1:].transpose()
 
 def findAtoms(photo, colorRanges):
 

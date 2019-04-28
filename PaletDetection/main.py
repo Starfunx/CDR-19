@@ -53,6 +53,11 @@ RCenters, GCenters, BCenters = blobDetector.findAtoms(img, colorRanges)
 
 ## inverse project the position of the elipses on the z=25 plane on the terrain
 ## (gives us the positions of the found center of the "atom" cylinders)
-
+for RCenter in RCenters
+    CameraInverseProject(cameraModel,Rcenter)
+for GCenter in GCenters
+    CameraInverseProject(cameraModel,Gcenter)
+for BCenter in BCenters
+    CameraInverseProject(cameraModel,Bcenter)
 
 # send result to the robot.
