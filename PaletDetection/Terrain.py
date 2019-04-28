@@ -1,4 +1,6 @@
 #distance unit is milimeter
+#permet de définir des objets sur le terrain
+
 import numpy as np
 
 import spacial_objects as obj

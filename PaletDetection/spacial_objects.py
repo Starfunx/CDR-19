@@ -1,11 +1,16 @@
+# permet d'obtenir des points dans l'espace pour des figures géométriques donnés
+
 import numpy as np
 
+
+#renvoie nbpoints points d'un cercle de diametre CircleDiameter dans le plan
+# x,y 
 def Circle(circleCenter, CircleDiameter, nbpoints):
     theta = np.linspace(0,2*np.pi,nbpoints)
     X = np.cos(theta) * CircleDiameter / 2 + circleCenter[0]
     Y = np.sin(theta) * CircleDiameter / 2 + circleCenter[1]
     Z = np.ones_like(X) * circleCenter[2]
-    
+
     C = np.stack((X,Y,Z))
     return C
 
