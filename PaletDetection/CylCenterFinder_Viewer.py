@@ -26,7 +26,7 @@ colorRanges = np.array([
 # Load picture, convert to grayscale and detect edges
 filename = "Assets/image6.png"
 img = cv2.imread(filename)
-output_img = img
+output_img = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
 
 Time = time.time() - start
 
@@ -56,7 +56,7 @@ plot = plt.figure(figsize=(10,6), num='elipse center')
 
 plot = plt.subplot(221)
 plt.title("img")
-implot = plot.imshow(img, origin='upper')
+implot = plot.imshow(output_img, origin='upper')
 
 plot = plt.subplot(224)
 plt.title(str(Time) + 's')
